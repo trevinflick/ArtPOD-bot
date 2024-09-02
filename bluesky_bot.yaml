@@ -1,0 +1,26 @@
+name: Post to Bluesky Daily
+
+on:
+  schedule:
+    - cron: '37 13 * * *'  # Runs daily at 13:37 UTC
+
+jobs:
+  post-to-bluesky:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests atproto
+
+      - name: Run Bluesky bot
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+        run: python bluesky_bot.py
