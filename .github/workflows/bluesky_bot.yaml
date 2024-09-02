@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '37 13 * * *'  # Runs daily at 13:37 UTC
 
+  workflow_dispatch:
+
 jobs:
   post-to-bluesky:
     runs-on: ubuntu-latest
