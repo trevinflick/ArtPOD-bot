@@ -1,10 +1,7 @@
 from atproto import Client
-from dotenv import load_dotenv
 import requests
 import os
 
-# Load environment variables from .env file
-load_dotenv()
 
 def fetch_art_data_from_github():
     github_url = "https://raw.githubusercontent.com/trevinflick/fetch_art/main/art_data.json"
