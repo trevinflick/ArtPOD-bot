@@ -10,13 +10,13 @@ def fetch_art_data_from_github():
     data = response.json()  # Parse the JSON data
 
     # Extract data from JSON
-    image_url = data.get("image_url", "No image available")
+    image_url_full = data.get("image_url_full", "No image available")
     description = data.get("description", "No description available")
     artist_display = data.get("artist_info", "No artist information available")
     title = data.get("title", "No title available")
     alt_text = data.get("alt_text", "No alternative text available")  # Fetch alt_text field
     
-    return image_url, description, artist_display, title, alt_text
+    return image_url_full, description, artist_display, title, alt_text
 
 def download_image(url):
     response = requests.get(url)
@@ -47,10 +47,10 @@ def post_to_bluesky(image_path, text, alt_text):
 
 def main():
     # Fetch the art data
-    image_url, description, artist_display, title, alt_text = fetch_art_data_from_github()
+    image_url_full, description, artist_display, title, alt_text = fetch_art_data_from_github()
 
     # Download the image
-    image_path = download_image(image_url)
+    image_path = download_image(image_url_full)
 
     # Create the post text
     post_text = f"{title}\n{artist_display}"
